@@ -1,8 +1,5 @@
 SEGURANCA - HAPPY GAMES
 
-Anotacao rapida pra usar de base no roteiro do video pitch (parte 4 - Diferenciais de Seguranca) e
-pra deixar registrado o que foi feito com base na 2a Mentoria da Palo Alto Networks (17/06).
-
 ---
 
 O QUE JA ESTA IMPLEMENTADO
@@ -72,27 +69,8 @@ e deixar claro pro usuario quando ele esta falando com uma IA.
 
 ---
 
-O QUE AINDA FALTA / PROXIMOS PASSOS (pra falar no video que "ainda pretende fazer")
-
-- Hash de senha de verdade: hoje o projeto e 100% frontend, sem backend nem banco de dados real,
-  entao nao tem onde guardar usuario/senha de forma persistente. Se o projeto ganhar um backend,
-  a senha teria que ser hasheada (bcrypt ou argon2) antes de qualquer coisa, nunca guardada em
-  texto puro.
-- HTTPS em producao: quando o site for hospedado de verdade (Vercel, por exemplo), garantir que
-  fica servido em HTTPS, o que a Vercel ja faz automatico.
-- Rate limiting no formulario de cadastro e na API simulada, pra evitar spam/abuso se um dia isso
-  virar uma API de verdade.
-- Autenticacao real (login/logout) com sessao, caso o projeto evolua pra ter conta de usuario de
-  verdade em vez do cadastro simples que so existe durante a sessao do navegador.
-- Sanitizacao mais forte de input (hoje a validacao e basica, do tipo "campo obrigatorio" e
-  "formato de email"), importante se o projeto passar a salvar esses dados em um banco.
-- Acompanhar o Next.js: quando sair uma versao nova e estavel que resolva a pendencia do
-  PostCSS sem quebrar o projeto, fazer a atualizacao com calma e testar tudo de novo.
-
----
-
 REFERENCIA DA MENTORIA
 
-2a Mentoria Enterprise Challenge 2026 - Palo Alto Networks, 17/06, com Pedro Bezerra (gerente de
-engenharia de software na Palo Alto). Principais pontos usados aqui: complexidade de senha,
-identidade visual marcante, cuidado com dado pessoal/LGPD em decisao automatizada por IA.
+Principais pontos usados: complexidade de senha,identidade visual marcante, cuidado com dado pessoal/LGPD em decisao automatizada por IA.
+
+OBS: gosto muito da mentoria da palo alto, uso inclusive no trabalho!

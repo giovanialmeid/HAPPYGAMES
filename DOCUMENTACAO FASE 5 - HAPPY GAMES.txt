@@ -1,11 +1,8 @@
 DOCUMENTACAO FASE 5 - HAPPY GAMES
 
-Aqui esta o que foi feito na Fase 5 e o motivo de cada coisa. Segui o mesmo formato das
-anotacoes da Fase 3 e da Fase 4, nao e artigo formal, e mais um registro do que mudou.
-
-Essa fase foi diferente das outras. Nas anteriores eu estava construindo funcionalidade nova.
+Essa fase foi diferente das outras. Nas fases anteriores eu estava construindo funcionalidade nova.
 Nessa aqui uma boa parte do trabalho foi testar o que ja existia, achar o que estava quebrado e
-arrumar, alem de aplicar o que foi falado na 2a Mentoria da Palo Alto Networks.
+arrumar, alem de aplicar o que foi falado na Mentoria da Palo Alto Networks.
 
 ---
 
@@ -275,29 +272,57 @@ Atualizei a documentacao da Fase 4 que citava esse arquivo.
 
 PARTE 7 - DOCUMENTOS DE APOIO CRIADOS
 
-Alem deste arquivo, criei mais dois pra ajudar na entrega:
+Alem deste arquivo, criei mais um pra ajudar na entrega:
 
 SEGURANCA.txt reune tudo que o projeto tem de seguranca hoje e o que ainda falta. Serve de base
-pro bloco de Diferenciais de Seguranca do video pitch, que e o segundo item de maior peso.
-
-ROTEIRO_VIDEO_PITCH.txt tem o roteiro do video dividido nos 6 blocos que o enunciado pede, com
-tempo sugerido pra cada um e um checklist pra conferir antes de gravar. A demonstracao
-funcional vale 2,5 de 5 pontos, entao a maior parte do tempo esta reservada pra ela.
+pro bloco de Diferenciais de Seguranca do video pitch
 
 ---
 
-O QUE FALTA
+PARTE 8 - AS DUAS VERSOES DO PROJETO E COMO RODAR CADA UMA !IMPORTANTE LER
 
-- Gravar o video pitch e subir no YouTube como nao listado
-- Fazer o push do repositorio e confirmar que ele esta publico
-- Montar o arquivo .txt final com os dois links
-- Decidir em grupo se vamos nos inscrever pra expor no NEXT (24/10, ARCA Spaces, Sao Paulo),
-  porque essa resposta precisa estar no video
+O repositorio tem duas aplicacoes diferentes convivendo na mesma pasta, e isso confunde se a
+pessoa nao souber. Entao vale explicar.
 
-Ideias pra continuar depois da entrega:
+A versao HTML (Fase 3) fica nas pastas HTML/, CSS/, JavaScript/ e Imagens/. Pra abrir e so dar
+duplo clique no arquivo HTML/index.html, nao precisa de servidor nem de instalar nada.
 
-- Se o projeto ganhar backend e banco de dados, guardar senha com hash (bcrypt ou argon2), nunca
-  em texto puro
-- Autenticacao de verdade, com login e sessao
-- Acompanhar as versoes do Next pra resolver a pendencia do PostCSS
-- Recomendacao de jogos usando IA, que ja estava previsto na Fase 4 e continua fazendo sentido
+A versao Next (Fase 4 e 5) fica na pasta happy-games-react/. Pra abrir precisa entrar nessa
+pasta, rodar npm install na primeira vez e depois npm run dev. Ai o site abre em
+http://localhost:3000.
+
+Por que uma abre direto e a outra nao:
+
+A versao HTML nao usa fetch nem modulos ES. Os dados dos jogos estao escritos direto no HTML e
+os caminhos dos arquivos sao todos relativos (../CSS/, ../Imagens/, ../JavaScript/). Como o
+navegador consegue ler tudo isso do proprio disco, o protocolo file:// da conta.
+
+A versao Next e o contrario. Ela busca os jogos com fetch('/api/games'), e essa API so existe
+enquanto o servidor de desenvolvimento esta rodando. Sem npm run dev nao tem de onde buscar os
+dados. Alem disso o Next precisa compilar as paginas e o Tailwind antes de servir.
+
+Um detalhe que testei: as duas versoes usam a mesma chave hg_carrinho no localStorage, mas os
+carrinhos nao se misturam. Isso acontece porque file:// e http://localhost:3000 sao origens
+diferentes pro navegador, e cada origem tem o seu proprio localStorage separado.
+
+Outra diferenca pratica: a versao HTML carrega o Bootstrap por CDN, entao ela precisa de
+internet pro visual ficar certo. A versao Next nao tem esse problema porque o Tailwind e
+compilado junto com o projeto.
+
+O que cada versao tem:
+
+Campo de senha com validacao de forca - so na versao Next
+Tela de compra lendo os itens do carrinho - so na versao Next
+Correcoes de bug da Fase 5 - so na versao Next
+Catalogo com busca e filtros - nas duas
+Carrinho com desconto progressivo d(n) = 5n - nas duas
+Barra de acessibilidade (contraste, fonte, leitor de voz) - nas duas
+
+Decidi nao levar as novidades da Fase 5 pra versao HTML. Ela e o registro de como o projeto
+estava na Fase 3, e mexer nela agora so traria risco de quebrar algo sem acrescentar nada. A
+versao Next e a atual e e ela que deve ser usada pra demonstrar o projeto.
+
+Peguei referencia aqui:
+MDN Same-origin policy - https://developer.mozilla.org/pt-BR/docs/Web/Security/Same-origin_policy
+MDN localStorage - https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+Next.js Route Handlers - https://nextjs.org/docs/app/building-your-application/routing/route-handlers
