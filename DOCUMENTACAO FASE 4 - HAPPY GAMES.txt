@@ -10,7 +10,7 @@ O projeto ficou com duas versoes entregues juntas. A versao HTML estatica que ja
 
 A versao Next.js ficou na pasta happy-games-react e tem a seguinte estrutura:
 
-src/context/ tem o CarrinhoContext.js, que e o contexto global do carrinho. Tambem tem um CartContext.js que ficou la como referencia de uma versao anterior.
+src/context/ tem o CarrinhoContext.js, que e o contexto global do carrinho.
 
 src/components/ tem os componentes que aparecem em todas as paginas: AccessibilityBar.js, Navbar.js, GameCard.js e Footer.js.
 

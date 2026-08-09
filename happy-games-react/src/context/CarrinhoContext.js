@@ -56,8 +56,8 @@ export function CarrinhoProvider({ children }) {
 
       if (posicao > -1) {
         // Se ja tem, so aumenta a quantidade.
-        // Importante criar um objeto novo com {...item} em vez de mexer no antigo,
-        // senao o React conta errado (no modo dev ele roda essa funcao 2x pra testar).
+        // Tem que montar um objeto novo aqui, se eu mexer direto no antigo o React
+        // se perde e a conta sai errada. Descobri isso testando.
         return anterior.map(function(item, indice) {
           if (indice === posicao) {
             return { ...item, quantidade: item.quantidade + 1 };

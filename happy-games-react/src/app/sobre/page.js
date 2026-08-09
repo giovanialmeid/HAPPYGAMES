@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Rocket, Target, Award, Shield, Newspaper, Trophy, UserPlus, Users, RotateCw, CheckCircle2, Lock } from 'lucide-react';
 
-// Confere a força da senha olhando 4 critérios: tamanho, maiúscula, número e caractere especial.
-// Cada critério que passa soma 1 ponto. Isso é usado pra decidir se a senha é fraca, média ou forte.
+// Ve se a senha e forte. Cada regra que ela cumpre vale 1 ponto, no maximo 4.
 function calcularForcaSenha(senha) {
   let pontos = 0;
   if (senha.length >= 8) pontos++;
@@ -74,7 +73,7 @@ export default function Sobre() {
   const [errosForm, setErrosForm] = useState({});
   const [mensagemOk, setMensagemOk] = useState('');
 
-  // Força da senha atualiza a cada letra digitada, pra dar feedback em tempo real
+  // Recalcula a cada letra digitada pra barrinha mudar de cor na hora
   const forcaSenha = calcularForcaSenha(campoSenha);
 
   // Função que salva um novo membro na lista
@@ -84,7 +83,7 @@ export default function Sobre() {
     setMensagemOk('');
     if (!campoNome.trim()) { novosErros.nome = 'Por favor, digite seu nome.'; }
     if (!campoJogo.trim()) { novosErros.jogo = 'Por favor, digite seu jogo favorito.'; }
-    // Só deixa cadastrar com senha forte (os 4 critérios: 8+ caracteres, maiúscula, número e caractere especial)
+    // So deixa cadastrar se a senha passar nas 4 regras
     if (!campoSenha) {
       novosErros.senha = 'Por favor, crie uma senha.';
     } else if (forcaSenha.pontos < 4) {
@@ -92,8 +91,7 @@ export default function Sobre() {
     }
     if (Object.keys(novosErros).length > 0) { setErrosForm(novosErros); return; }
 
-    // A senha NUNCA é guardada, nem na lista de membros, nem no localStorage.
-    // Ela só existe na hora da validação e é descartada logo em seguida.
+    // Nao salvo a senha em lugar nenhum, so uso ela aqui pra validar e pronto
     setListaMembros(prev => [...prev, { nome: campoNome.trim(), jogo: campoJogo.trim() }]);
     setMensagemOk(`Cadastro realizado com sucesso! Bem-vindo(a), ${campoNome.trim()}!`);
     setCampoNome('');
@@ -102,7 +100,7 @@ export default function Sobre() {
     setErrosForm({});
   };
 
-  // Desenha a lista de membros usando while
+  // Monta a lista de quem se cadastrou
   const desenharListaMembros = () => {
     const listItems = [];
     let idx = 0;
@@ -261,7 +259,7 @@ export default function Sobre() {
                 autoComplete="new-password"
                 className={`w-full bg-gaming-bg border text-gaming-textLight text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 ${errosForm.senha ? 'border-red-500 focus:ring-red-500' : 'border-gaming-cardBorder focus:ring-gaming-primary focus:border-gaming-primary'}`} />
 
-              {/* Barra de força da senha, só aparece depois que a pessoa começa a digitar */}
+              {/* barrinha de forca, so aparece depois que comeca a digitar */}
               {campoSenha && (
                 <div className="mt-1.5">
                   <div className="flex gap-1 h-1.5">

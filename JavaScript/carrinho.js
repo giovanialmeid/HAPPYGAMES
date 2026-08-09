@@ -1,18 +1,12 @@
-/* =============================================
-   carrinho.js  –  Módulo de Carrinho de Compras
-   Happy Games – Fase 3
-
-   Estrutura de dados:
-     carrinho  →  Array (vetor) de objetos:
-     { nome: string, preco: number, quantidade: number }
-
-   Função de desconto (função de 1º grau):
-     desconto(n) = n * 5   →  5% por item extra (máx 20%)
-     Equação linear:  d(n) = 5n  para n = qtd total de itens
-   ============================================= */
+// ==============================================
+// carrinho.js – Guarda os jogos que a pessoa adicionou
+//
+// Cada item e um objeto com nome, preco e quantidade.
+// O desconto sobe 5% por item, d(n) = 5n, e para em 20%.
+// ==============================================
 
 // ==============================================
-// ESTADO GLOBAL – vetor de itens do carrinho
+// Lista dos itens do carrinho
 // ==============================================
 let carrinho = JSON.parse(localStorage.getItem('hg_carrinho') || '[]');
 

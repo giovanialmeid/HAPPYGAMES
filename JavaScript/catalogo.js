@@ -67,11 +67,11 @@ function filtrarJogos() {
 function limparFiltros() {
   document.getElementById('searchInput').value = '';
   
-  // Limpa Checkboxes e Radios (Usa do-while ou loop simples)
+  // Desmarca todos os checkboxes e radios dos filtros
   const checkboxes = document.querySelectorAll('.form-check-input');
   let i = 0;
-  
-  // Demonstração da estrutura DO-WHILE pedida na Fase 3
+
+  // o if antes evita erro se nao tiver nenhum checkbox na tela
   if (checkboxes.length > 0) {
     do {
       checkboxes[i].checked = false;

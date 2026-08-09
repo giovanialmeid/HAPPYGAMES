@@ -1,9 +1,6 @@
-/* =============================================
-   sobre.js – Fase 3
-   - Novidades (array + FOR)
-   - Ranking com fórmula de 1º grau
-   - Cadastro de membros (vetor de objetos, WHILE)
-   ============================================= */
+// ==============================================
+// sobre.js – Novidades, ranking e cadastro de membros
+// ==============================================
 
 var destaques = [
   "Nosso catálogo foi atualizado com novos jogos para todos os estilos.",

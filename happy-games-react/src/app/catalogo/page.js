@@ -61,7 +61,7 @@ export default function Catalogo() {
     setOrdenacao('');
   };
 
-  // Filtra e ordena os jogos (sem usar useMemo, so variavel normal)
+  // Filtra e ordena os jogos
   var jogosFiltrados = [...jogos];
 
   // 1. Filtro de busca por nome
@@ -100,7 +100,7 @@ export default function Catalogo() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       
-      {/* Cabeçalho da Página */}
+      {/* cabecalho da pagina */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="flex items-center gap-2 text-2xl md:text-3xl font-black text-white">
@@ -112,7 +112,7 @@ export default function Catalogo() {
           </p>
         </div>
 
-        {/* Barra de Busca + Botão Filtro Mobile */}
+        {/* busca e o botao de filtro que aparece no celular */}
         <div className="flex gap-2 w-full md:w-auto">
           <div className="relative flex-grow md:w-64">
             <input
@@ -134,10 +134,10 @@ export default function Catalogo() {
         </div>
       </div>
 
-      {/* Resultados e Grid Principal */}
+      {/* area dos resultados */}
       <div className="flex gap-8 items-start">
         
-        {/* FILTROS LATERAL (DESKTOP) */}
+        {/* filtros da lateral, so no computador */}
         <aside className="hidden md:block w-64 flex-shrink-0 bg-gaming-card border border-gaming-cardBorder rounded-2xl p-6 sticky top-24">
           <div className="flex items-center justify-between mb-6 pb-2 border-b border-gaming-cardBorder">
             <h2 className="font-orbitron font-bold text-sm text-gaming-textLight flex items-center gap-2">
@@ -220,9 +220,9 @@ export default function Catalogo() {
           </div>
         </aside>
 
-        {/* CONTEÚDO / GRID DE JOGOS */}
+        {/* onde os jogos aparecem */}
         <div className="flex-grow">
-          {/* Contador de Resultados */}
+          {/* mostra quantos jogos apareceram */}
           {!carregando && (
             <p className="text-gaming-textMuted text-xs mb-4">
               Mostrando <span className="text-white font-bold">{jogosFiltrados.length}</span> de <span className="text-white font-bold">{jogos.length}</span> jogos encontrados.
@@ -230,14 +230,14 @@ export default function Catalogo() {
           )}
 
           {carregando ? (
-            // Skeleton Loader
+            // caixinhas cinzas enquanto os jogos nao chegam da API
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3, 4, 5, 6].map((n) => (
                 <div key={n} className="bg-gaming-card border border-gaming-cardBorder rounded-2xl h-80 animate-pulse"></div>
               ))}
             </div>
           ) : jogosFiltrados.length === 0 ? (
-            // Estado Vazio (Nenhum resultado)
+            // quando o filtro nao acha nada
             <div className="bg-gaming-card border border-gaming-cardBorder rounded-2xl py-16 px-4 text-center">
               <Search className="w-12 h-12 text-gaming-textMuted mx-auto mb-4" />
               <h3 className="font-orbitron font-extrabold text-lg text-white mb-2">Nenhum jogo encontrado</h3>
@@ -252,7 +252,7 @@ export default function Catalogo() {
               </button>
             </div>
           ) : (
-            // Grid de Cards
+            // os cards dos jogos
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeIn">
               {jogosFiltrados.map((jogo) => (
                 <GameCard key={jogo.id} jogo={jogo} />
@@ -262,13 +262,13 @@ export default function Catalogo() {
         </div>
       </div>
 
-      {/* OFFCANVAS / MODAL FILTROS MOBILE */}
+      {/* menu de filtros que abre no celular */}
       {menuFiltroAberto && (
         <div className="fixed inset-0 z-50 flex justify-end md:hidden">
-          {/* Backdrop */}
+          {/* fundo escuro atras do menu */}
           <div onClick={() => setMenuFiltroAberto(false)} className="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
           
-          {/* Menu de Filtros (Slide-in) */}
+          {/* o menu que desliza pra dentro */}
           <div className="relative w-80 max-w-xs h-full bg-gaming-card border-l border-gaming-cardBorder p-6 flex flex-col overflow-y-auto z-10 animate-slideLeft">
             <div className="flex items-center justify-between pb-4 border-b border-gaming-cardBorder mb-6">
               <h2 className="font-orbitron font-bold text-sm text-gaming-textLight flex items-center gap-2">
@@ -343,7 +343,7 @@ export default function Catalogo() {
               </div>
             </div>
 
-            {/* Ações */}
+            {/* botoes de limpar e aplicar */}
             <div className="mt-auto flex gap-3">
               <button
                 onClick={() => { limparTodosFiltros(); setMenuFiltroAberto(false); }}

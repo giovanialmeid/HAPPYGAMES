@@ -1,7 +1,7 @@
 "use client";
 
-// Página de finalizar compra - formulário com stepper de 3 etapas
-// Os itens vêm do carrinho (CarrinhoContext), não são escolhidos aqui.
+// Pagina de finalizar compra - formulario dividido em 3 etapas
+// Os jogos vem do carrinho, aqui a pessoa so confere e paga
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -38,8 +38,8 @@ export default function Compra() {
   const [erros, setErros] = useState({});
   // Controla se mostra o modal de confirmação
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
-  // Fica true quando o pedido é confirmado, pra não piscar a tela de "carrinho vazio"
-  // no instante em que o carrinho é limpo antes de redirecionar
+  // Sem isso a tela de "carrinho vazio" pisca na hora que limpo o carrinho pra ir
+  // pra pagina de obrigado. Ficou feio, entao criei esse controle.
   const [finalizando, setFinalizando] = useState(false);
 
   // Formata valor em reais (R$)
@@ -136,7 +136,7 @@ export default function Compra() {
 
   // Confirma a compra, limpa o carrinho e redireciona
   const finalizarPedido = () => {
-    // Junta o nome dos jogos pra montar o recibo na página de obrigado
+    // Junta o nome dos jogos pra mostrar no recibo
     const nomesJogos = carrinho.map(item => item.nome).join(', ');
 
     const params = new URLSearchParams({
@@ -148,13 +148,13 @@ export default function Compra() {
       total: totalFinal.toString()
     });
 
-    // Marca que tá finalizando antes de limpar, senão a tela de carrinho vazio pisca
+    // Marca antes de limpar pra tela nao piscar
     setFinalizando(true);
     limparTudo();
     router.push(`/obrigado?${params.toString()}`);
   };
 
-  // Espera o carrinho carregar do localStorage (evita erro de hydration do Next.js)
+  // Espera o carrinho carregar, senao o Next reclama de hydration
   if (!carregado) {
     return (
       <div className="max-w-xl mx-auto px-4 py-12 text-center">
@@ -163,7 +163,7 @@ export default function Compra() {
     );
   }
 
-  // Se não tem nada no carrinho não dá pra finalizar compra nenhuma
+  // Nao da pra finalizar compra com o carrinho vazio
   if (carrinho.length === 0 && !finalizando) {
     return (
       <div className="max-w-xl mx-auto px-4 py-16 text-center">
@@ -269,7 +269,7 @@ export default function Compra() {
               Esses são os jogos do seu carrinho. Dá pra ajustar a quantidade aqui mesmo.
             </p>
 
-            {/* Lista dos jogos que vieram do carrinho */}
+            {/* jogos que vieram do carrinho */}
             <div className="space-y-2">
               {carrinho.map((item) => (
                 <div key={item.nome}
@@ -296,7 +296,7 @@ export default function Compra() {
               ))}
             </div>
 
-            {/* Resumo dos valores, tudo calculado no contexto do carrinho */}
+            {/* resumo dos valores */}
             <div className="bg-gaming-bg border border-gaming-cardBorder rounded-2xl p-4 space-y-2 mt-4 text-xs">
               <div className="flex items-center justify-between">
                 <span className="text-gaming-textMuted font-medium">Subtotal ({totalItens} {totalItens === 1 ? 'item' : 'itens'})</span>
@@ -395,7 +395,7 @@ export default function Compra() {
               </div>
             </div>
 
-            {/* Aviso de segurança: os dados do cartão não saem daqui */}
+            {/* aviso pro usuario de que o cartao nao fica salvo */}
             <div className="bg-green-500/5 border border-green-500/20 rounded-xl p-3 flex gap-2">
               <ShieldCheck className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
               <p className="text-gaming-textMuted text-xxs leading-relaxed">
@@ -449,7 +449,7 @@ export default function Compra() {
 
               <div className="border-t border-gaming-cardBorder my-2"></div>
 
-              {/* Os jogos que estão sendo comprados */}
+              {/* os jogos da compra */}
               {carrinho.map((item) => (
                 <div key={item.nome} className="flex justify-between">
                   <span className="text-gaming-textMuted font-medium">{item.nome}</span>
