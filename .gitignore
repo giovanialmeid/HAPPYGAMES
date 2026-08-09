@@ -1,0 +1,37 @@
+# Dependencias do Node (nunca subir pro Git, sao reinstaladas com npm install)
+node_modules/
+
+# Build e cache do Next.js
+.next/
+out/
+build/
+
+# Variaveis de ambiente (nunca subir, podem ter chave de API e senha)
+.env
+.env.local
+.env*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuracoes de editor
+.vscode/
+.idea/
+
+# Deploy
+.vercel
+
+# Transcricao da mentoria da Palo Alto.
+# Na propria gravacao eles falam que as mentorias ficam em segredo por causa do
+# campeonato, entao nao subi pro repositorio publico. O arquivo continua aqui na
+# pasta local pra consulta. Se o grupo decidir que pode publicar, e so apagar
+# esta linha.
+Transcrição Palo Alto Mentoria.txt

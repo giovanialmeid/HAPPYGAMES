@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width:1024px)" />
+  <link rel="stylesheet" href="../CSS/compra.css" />
+  <title>Compra de Jogo - Happy Games</title>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="index.html">
+        <i class="bi bi-controller me-2"></i>Happy Games
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav gap-1 align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="catalogo.html"><i class="bi bi-grid me-1"></i>Catálogo</a></li>
+          <li class="nav-item"><a class="nav-link active" href="compra.html"><i class="bi bi-cart me-1"></i>Comprar</a></li>
+          <li class="nav-item"><a class="nav-link" href="sobre.html"><i class="bi bi-info-circle me-1"></i>Sobre</a></li>
+          <li class="nav-item ms-2">
+            <a class="nav-link cart-nav-wrapper" href="carrinho.html" title="Carrinho">
+              <i class="bi bi-bag-fill" style="font-size:1.15rem"></i>
+              <span class="cart-badge" id="cartBadgeNav">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-4">
+    <div class="container">
+      <div class="stepper-wrapper">
+        <h2 class="text-center mb-4 fw-display" style="color:var(--primary-dark);font-weight:800">
+          <i class="bi bi-bag-check me-2"></i>Finalizar compra
+        </h2>
+
+        <div class="progress-stepper">
+          <div class="progress-bar-inner" id="progressBar" style="width:33%"></div>
+        </div>
+        <div class="step-labels">
+          <span id="label1" class="active"><i class="bi bi-person me-1"></i>Dados pessoais</span>
+          <span id="label2"><i class="bi bi-controller me-1"></i>Pedido</span>
+          <span id="label3"><i class="bi bi-credit-card me-1"></i>Pagamento</span>
+        </div>
+
+        <div class="step-card active" id="step1">
+          <h4><i class="bi bi-person-circle me-2"></i>Seus dados</h4>
+          <div class="mb-3">
+            <label class="form-label" for="nome">Nome completo</label>
+            <input type="text" class="form-control" id="nome" placeholder="Ex: João da Silva" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="seuemail@exemplo.com" required>
+          </div>
+          <div class="text-end">
+            <button class="btn btn-step btn-next" onclick="irPara(2)">Próximo <i class="bi bi-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <div class="step-card" id="step2">
+          <h4><i class="bi bi-controller me-2"></i>Seu pedido</h4>
+          <div class="mb-3">
+            <label class="form-label" for="jogo">Escolha o jogo</label>
+            <select class="form-select" id="jogo" onchange="atualizarPrecoUnitario()">
+              <option value="The Last Of Us"    data-preco="199.90">The Last Of Us – R$ 199,90</option>
+              <option value="GTA 6"             data-preco="349.90">GTA 6 – R$ 349,90</option>
+              <option value="Fortnite"          data-preco="149.90">Fortnite – R$ 149,90</option>
+              <option value="EA Sports FC 26"  data-preco="249.90">EA Sports FC 26 – R$ 249,90</option>
+              <option value="Minecraft"         data-preco="99.90">Minecraft – R$ 99,90</option>
+              <option value="God of War Ragnarök" data-preco="299.90">God of War Ragnarök – R$ 299,90</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="quantidade">Quantidade</label>
+            <input type="number" class="form-control" id="quantidade" min="1" max="10" value="1" style="max-width:120px" oninput="atualizarPrecoUnitario()">
+          </div>
+          <div class="preco-preview" id="precoPreview">
+            <div class="preco-linha"><span>Preço unitário</span><span id="precoUnit">—</span></div>
+            <div class="preco-linha"><span>Desconto (<span id="pctDesc">0</span>%) <small class="text-muted">d(n)=5n</small></span><span class="text-success" id="valorDesc">— R$ 0,00</span></div>
+            <div class="preco-linha preco-total"><span>Total estimado</span><span id="precoTotal">—</span></div>
+          </div>
+          <div class="d-flex justify-content-between gap-2 mt-4">
+            <button class="btn btn-step btn-prev" onclick="irPara(1)"><i class="bi bi-arrow-left me-1"></i>Voltar</button>
+            <button class="btn btn-step btn-next" onclick="irPara(3)">Próximo <i class="bi bi-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <div class="step-card" id="step3">
+          <h4><i class="bi bi-credit-card me-2"></i>Pagamento</h4>
+          <div class="mb-3">
+            <label class="form-label" for="cartao">Número do cartão</label>
+            <input type="text" class="form-control" id="cartao" placeholder="0000 0000 0000 0000" maxlength="19" required>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <label class="form-label" for="validade">Validade</label>
+              <input type="text" class="form-control" id="validade" placeholder="MM/AA" maxlength="5">
+            </div>
+            <div class="col">
+              <label class="form-label" for="cvv">CVV</label>
+              <input type="text" class="form-control" id="cvv" placeholder="123" maxlength="3">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between gap-2">
+            <button class="btn btn-step btn-prev" onclick="irPara(2)"><i class="bi bi-arrow-left me-1"></i>Voltar</button>
+            <button class="btn btn-step btn-next" id="btnRevisar" type="button">
+              <i class="bi bi-bag-check me-1"></i>Revisar pedido
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal fade" id="modalConfirmacao" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel"><i class="bi bi-bag-check me-2"></i>Confirmar pedido</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted mb-3">Confira os detalhes antes de finalizar:</p>
+          <div id="resumoModal">
+            <div class="resumo-item"><span>Nome</span><span id="rNome">—</span></div>
+            <div class="resumo-item"><span>E-mail</span><span id="rEmail">—</span></div>
+            <div class="resumo-item"><span>Jogo</span><span id="rJogo">—</span></div>
+            <div class="resumo-item"><span>Quantidade</span><span id="rQtd">—</span></div>
+            <div class="resumo-item"><span>Desconto</span><span id="rDesc">—</span></div>
+            <div class="resumo-item"><span>Total</span><span id="rPreco">—</span></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-pencil me-1"></i>Editar
+          </button>
+          <button type="button" class="btn btn-next btn-step" id="btnConfirmar">
+            <i class="bi bi-check-circle me-1"></i>Confirmar compra
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h2><i class="bi bi-controller me-2"></i>Happy Games</h2>
+    <p class="mt-2">Email: <a href="mailto:contato@happygames.com">contato@happygames.com</a></p>
+    <p class="mt-1">&copy; 2026 Happy Games.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../JavaScript/carrinho.js"></script>
+  <script src="../JavaScript/compra.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* =============================================
+   desktop.css  –  Ajustes para Desktop (min-width: 1024px)
+   ============================================= */
+
+@media (min-width: 1024px) {
+  .hero-carousel img {
+    height: 480px;
+  }
+  .section-title {
+    font-size: 1.85rem;
+  }
+  .navbar-custom .nav-link {
+    font-size: 0.95rem;
+  }
+}

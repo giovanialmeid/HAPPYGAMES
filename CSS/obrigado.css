@@ -1,0 +1,27 @@
+/* =============================================
+   obrigado.css  –  Confirmação de Compra
+   ============================================= */
+
+.obrigado-box {
+  background-color: var(--card-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 20px;
+}
+.recibo-box {
+  background-color: var(--bg-dark) !important;
+  border-color: var(--border-dark) !important;
+}
+.recibo-box h5 {
+  font-family: var(--heading-font);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+  border-bottom: 1px solid var(--border-dark);
+  padding-bottom: 0.5rem;
+}
+.recibo-box span {
+  color: var(--text-muted);
+}
+.recibo-box strong {
+  color: #fff;
+}

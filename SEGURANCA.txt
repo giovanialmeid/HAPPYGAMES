@@ -1,0 +1,74 @@
+SEGURANCA - HAPPY GAMES
+
+Anotacao rapida pra usar de base no roteiro do video pitch (parte 4 - Diferenciais de Seguranca) e
+pra deixar registrado o que foi feito com base na 2a Mentoria da Palo Alto Networks (17/06).
+
+---
+
+O QUE JA ESTA IMPLEMENTADO
+
+1) Complexidade de senha (Fase 5)
+Na pagina Sobre, no formulario "Entre para a Comunidade", agora tem um campo de senha com
+validacao de forca. A senha so e aceita se tiver os 4 criterios: minimo 8 caracteres, 1 letra
+maiuscula, 1 numero e 1 caractere especial. Tem uma barrinha visual que mostra fraca, media ou
+forte enquanto a pessoa digita. Isso foi implementado direto depois da fala do Pedro (Palo Alto)
+na mentoria, onde ele falou que "hoje a gente esta falando muito sobre complexidade da senha".
+
+Ponto importante: a senha NUNCA e guardada em lugar nenhum. Nem no localStorage, nem na lista de
+membros que aparece na tela. Ela so existe no momento da validacao e e descartada. Isso evita
+guardar dado sensivel sem necessidade, que e uma das preocupacoes que a LGPD trata.
+
+Arquivo: happy-games-react/src/app/sobre/page.js (funcao calcularForcaSenha)
+
+2) Dados de cartao nao trafegam pela URL
+Na tela de compra (compra/page.js), quando o pedido e finalizado, so nome, email, jogo,
+quantidade, desconto e total vao na URL pra montar o recibo na pagina obrigado. O numero do
+cartao, validade e CVV ficam so no estado do React durante o preenchimento e nao sao enviados
+pra lugar nenhum (nem servidor, nem URL). Como e uma simulacao de checkout, isso ja evita o erro
+classico de vazar dado de cartao em query string, que ficaria salvo no historico do navegador.
+
+3) Mascaras nos campos sensiveis
+O campo de cartao formata automaticamente em blocos de 4 digitos, a validade em MM/AA e o CVV
+aceita so 3 numeros. Isso reduz erro de digitacao e ja filtra caractere invalido antes de
+qualquer validacao, o que ajuda a evitar que a pessoa cole algo diferente do esperado no campo.
+
+4) Validacao de formulario em toda a aplicacao
+Todos os formularios (compra, cadastro de comunidade) tem validacao antes de aceitar o envio:
+campos obrigatorios, formato de email com regex, tamanho minimo de cartao/senha. Isso e uma
+primeira camada basica contra entrada de dado invalido ou mal-intencionado.
+
+5) Identidade visual marcante (recomendacao da mentoria)
+O tema "gaming" no Tailwind (cores, fontes Orbitron/Nunito, efeito neon e glassmorphism) foi
+citado pelo Pedro como algo que ajuda o projeto a ser lembrado. Ja estava na Fase 4, mantido
+aqui.
+
+6) LGPD e cuidado com IA (documentado na Fase 4)
+Ja tinha ficado registrado no documento da Fase 4 que, se o projeto usar IA de verdade
+(recomendacao de jogos, chatbot etc.), os cuidados vao ser: nao mandar dado pessoal pra API
+externa sem necessidade, nao deixar a IA alucinar recomendando jogo que nao existe no catalogo,
+e deixar claro pro usuario quando ele esta falando com uma IA.
+
+---
+
+O QUE AINDA FALTA / PROXIMOS PASSOS (pra falar no video que "ainda pretende fazer")
+
+- Hash de senha de verdade: hoje o projeto e 100% frontend, sem backend nem banco de dados real,
+  entao nao tem onde guardar usuario/senha de forma persistente. Se o projeto ganhar um backend,
+  a senha teria que ser hasheada (bcrypt ou argon2) antes de qualquer coisa, nunca guardada em
+  texto puro.
+- HTTPS em producao: quando o site for hospedado de verdade (Vercel, por exemplo), garantir que
+  fica servido em HTTPS, o que a Vercel ja faz automatico.
+- Rate limiting no formulario de cadastro e na API simulada, pra evitar spam/abuso se um dia isso
+  virar uma API de verdade.
+- Autenticacao real (login/logout) com sessao, caso o projeto evolua pra ter conta de usuario de
+  verdade em vez do cadastro simples que so existe durante a sessao do navegador.
+- Sanitizacao mais forte de input (hoje a validacao e basica, do tipo "campo obrigatorio" e
+  "formato de email"), importante se o projeto passar a salvar esses dados em um banco.
+
+---
+
+REFERENCIA DA MENTORIA
+
+2a Mentoria Enterprise Challenge 2026 - Palo Alto Networks, 17/06, com Pedro Bezerra (gerente de
+engenharia de software na Palo Alto). Principais pontos usados aqui: complexidade de senha,
+identidade visual marcante, cuidado com dado pessoal/LGPD em decisao automatizada por IA.

@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Orbitron:wght@600;800;900&display=swap');
+
+:root {
+  --bg-dark: #0b0f19;
+  --card-dark: #171e2f;
+  --border-dark: #2b354f;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --accent: #f59e0b;
+  --text-light: #f3f4f6;
+  --text-muted: #9ca3af;
+  --primary-font: 'Nunito', sans-serif;
+  --heading-font: 'Orbitron', sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--primary-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: 800;
+  color: #fff;
+}
+
+/* NAVBAR styling */
+.navbar-custom {
+  background-color: rgba(11, 15, 25, 0.95);
+  border-bottom: 1px solid var(--border-dark);
+  backdrop-filter: blur(10px);
+}
+.navbar-brand-custom {
+  font-family: var(--heading-font);
+  font-weight: 900;
+  color: #fff !important;
+  font-size: 1.35rem;
+}
+.navbar-brand-custom i {
+  color: var(--primary);
+}
+.navbar-custom .nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.2s;
+}
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+  color: #fff !important;
+  background-color: rgba(99, 102, 241, 0.15);
+}
+
+.cart-nav-wrapper {
+  position: relative;
+}
+.cart-badge {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--bg-dark);
+}
+
+/* HERO CAROUSEL */
+.hero-carousel {
+  border: 1px solid var(--border-dark);
+}
+.hero-carousel img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  filter: brightness(0.35);
+}
+.hero-carousel .carousel-caption {
+  text-align: left;
+  left: 8%;
+  bottom: 15%;
+}
+.hero-carousel .carousel-caption h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+.badge-genero {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+}
+
+/* GAME CARD */
+.game-card {
+  background-color: var(--card-dark) !important;
+  border: 1px solid var(--border-dark) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.game-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+.game-card img {
+  height: 200px;
+  object-fit: cover;
+}
+.game-card .card-price {
+  font-family: var(--heading-font);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #fff;
+  margin-top: 1rem;
+}
+.btn-comprar {
+  background-color: var(--primary) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  transition: all 0.2s !important;
+  border: none !important;
+}
+.btn-comprar:hover {
+  background-color: var(--primary-dark) !important;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* NOVIDADES */
+.novidades-box {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, rgba(11, 15, 25, 1) 100%);
+  border: 1px solid var(--border-dark);
+  border-radius: 16px;
+  padding: 2rem;
+}
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  border-bottom: 2px solid var(--border-dark);
+  padding-bottom: 0.5rem;
+}
+
+/* FOOTER */
+footer {
+  margin-top: auto;
+  background-color: var(--bg-dark);
+  border-top: 1px solid var(--border-dark);
+  padding: 2.5rem 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+footer h2 {
+  font-size: 1.25rem;
+  color: #fff;
+}
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* TOAST */
+.toast-container-custom {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1055;
+}
+
+/* =============================================
+   BARRA DE ACESSIBILIDADE (SPACECONNECT DESIGN)
+   ============================================= */
+.accessibility-bar {
+  background: #04060c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 5px 15px;
+  font-size: 0.85rem;
+  font-family: var(--primary-font);
+  color: var(--text-muted);
+}
+.accessibility-bar span {
+  font-weight: 700;
+}
+.accessibility-bar .btn-access {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-muted);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-left: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.accessibility-bar .btn-access:hover,
+.accessibility-bar .btn-access:focus {
+  color: var(--primary);
+  border-color: var(--primary);
+  outline: none;
+}
+
+/* TAMANHOS DE FONTE DINÂMICOS (SPACECONNECT) */
+body.font-lg {
+  font-size: 1.15rem;
+}
+body.font-lg p, body.font-lg span, body.font-lg li, body.font-lg td, body.font-lg a, body.font-lg button {
+  font-size: 1.2rem;
+}
+body.font-lg h1 { font-size: 3rem; }
+body.font-lg h2 { font-size: 2.2rem; }
+body.font-lg h3 { font-size: 1.7rem; }
+
+body.font-xl {
+  font-size: 1.3rem;
+}
+body.font-xl p, body.font-xl span, body.font-xl li, body.font-xl td, body.font-xl a, body.font-xl button {
+  font-size: 1.35rem;
+}
+body.font-xl h1 { font-size: 3.5rem; }
+body.font-xl h2 { font-size: 2.5rem; }
+body.font-xl h3 { font-size: 2rem; }
+
+/* ALTO CONTRASTE DETALHADO (SPACECONNECT) */
+body.alto-contraste {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  background-image: none !important;
+}
+body.alto-contraste * {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  animation: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste h4,
+body.alto-contraste h5,
+body.alto-contraste h6,
+body.alto-contraste strong,
+body.alto-contraste label,
+body.alto-contraste .navbar-brand {
+  color: #ffff00 !important;
+}
+body.alto-contraste .btn,
+body.alto-contraste .btn-comprar,
+body.alto-contraste .btn-access {
+  border: 2px solid #ffff00 !important;
+  border-radius: 4px !important;
+  color: #ffff00 !important;
+  background-color: #000000 !important;
+}
+body.alto-contraste .btn:hover,
+body.alto-contraste .btn:focus,
+body.alto-contraste .btn-comprar:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+body.alto-contraste .form-control,
+body.alto-contraste .form-select {
+  border: 2px solid #ffffff !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+body.alto-contraste .form-control:focus {
+  border-color: #ffff00 !important;
+}
+body.alto-contraste .accessibility-bar {
+  border-bottom: 2px solid #ffffff !important;
+  background-color: #000000 !important;
+}
+body.alto-contraste .navbar-custom {
+  background-color: #000000 !important;
+  border-bottom: 2px solid #ffffff !important;
+}
+
+/* Compensação de layout para a barra de acessibilidade */
+body {
+  padding-top: 0px !important;
+}
+
+

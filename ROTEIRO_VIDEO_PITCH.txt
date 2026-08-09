@@ -1,0 +1,118 @@
+ROTEIRO VIDEO PITCH - HAPPY GAMES (Fase 5)
+
+Duracao maxima: 5 minutos. Meta de tempo por bloco abaixo. Ensaiar antes de gravar.
+Lembrete: NAO mostrar codigo-fonte no video, so a aplicacao rodando.
+
+---
+
+BLOCO 1 - APRESENTACAO DO GRUPO (~25s) [vale 0,25]
+
+- Cada integrante fala nome completo, RM e cidade onde mora.
+- Depois, responder direto: o grupo quer participar do NEXT (24/10, sabado, presencial em
+  Sao Paulo, ARCA Spaces) como expositor? Essa resposta e obrigatoria no video, entao decidir
+  isso ANTES de gravar.
+
+Roteiro sugerido de fala:
+"Oi, somos o grupo Happy Games. Eu sou [nome], RM [numero], de [cidade]." (repetir por
+integrante) "E sim/nao, queremos participar do NEXT em outubro apresentando o projeto."
+
+---
+
+BLOCO 2 - INTRODUCAO E OBJETIVOS (~35s) [vale 0,5]
+
+Falar:
+- O que e o Happy Games: uma loja de jogos digitais online.
+- Pra quem e: gamers casuais, jogadores competitivos que curtem ranking, e familiares que
+  querem comprar de forma simples.
+- Por que importa: processo de compra confuso e chave de ativacao entregue errada sao dor real
+  em loja digital. O Happy Games resolve com fluxo de 3 etapas simples e recibo automatico.
+- Diferencial frente a concorrente (Steam, Epic Games, Nuuvem, etc, se quiser citar): desconto
+  progressivo automatico por quantidade, ranking pra engajar a comunidade, e acessibilidade
+  (contraste, fonte ajustavel, leitor de voz) que boa parte das lojas grandes nao prioriza.
+
+---
+
+BLOCO 3 - TECNOLOGIAS ADOTADAS (~35s) [vale 0,5]
+
+Falar rapido, pode ser com slide de apoio (lista simples):
+- Frontend: HTML, CSS e JavaScript (versao Fase 3) e depois migrado pra Next.js 14 + React 18
+  + Tailwind CSS (versao atual, Fase 4/5).
+- Icones: lucide-react.
+- Persistencia local: localStorage (carrinho e preferencias de acessibilidade).
+- IDE: VS Code.
+- Apoio: Claude Code (Anthropic) pra revisar codigo e ajudar em partes especificas do
+  desenvolvimento; IA Generativa de imagem pra gerar as capas dos jogos.
+- Controle de versao: Git e GitHub.
+- (Se usou algo pra gerenciar tarefas do grupo tipo Trello/Notion, citar aqui tambem.)
+
+---
+
+BLOCO 4 - DIFERENCIAIS DE SEGURANCA (~50s) [vale 1,0 - segundo maior peso, capricha aqui]
+
+Base: arquivo SEGURANCA.txt (nesta mesma pasta) tem tudo detalhado. Resumo pra falar:
+
+O que ja tem implementado:
+- Complexidade de senha no cadastro da comunidade: exige 8+ caracteres, maiuscula, numero e
+  caractere especial, com barra visual de forca (mostrar na tela). Direto da recomendacao da
+  mentoria da Palo Alto sobre complexidade de senha.
+- A senha nunca fica salva em lugar nenhum (nem localStorage), so valida na hora e descarta.
+- Dados de cartao (numero, validade, CVV) nunca trafegam pela URL, ficam so no estado da pagina
+  durante o preenchimento.
+- Mascaras nos campos de cartao/validade/CVV pra evitar entrada invalida.
+- Validacao de formulario em todas as telas (nome, email, campos obrigatorios).
+
+O que pretende adicionar:
+- Se o projeto ganhar backend/banco de dados real: hash de senha (bcrypt/argon2), nunca texto
+  puro.
+- HTTPS em producao (automatico se hospedar na Vercel).
+- Autenticacao de verdade com login/sessao.
+- Cuidado com LGPD se algum dia integrar IA de recomendacao: nao mandar dado pessoal pra API
+  externa sem necessidade, e deixar claro pro usuario quando ele fala com uma IA.
+
+---
+
+BLOCO 5 - DEMONSTRACAO FUNCIONAL (~2min50s a 3min) [vale 2,5 - MAIOR PESO, foco principal]
+
+Roteiro de telas pra mostrar em sequencia (praticar o fluxo antes de gravar, sem travar):
+
+1. Home: mostrar os jogos carregando via API simulada (fetch), visual gaming com neon.
+2. Catalogo: usar a busca e os filtros de genero/plataforma ao vivo, mostrar que atualiza na
+   hora.
+3. Adicionar 2 ou 3 jogos diferentes no carrinho, abrir o carrinho e mostrar o desconto
+   progressivo calculando sozinho (d(n) = 5n).
+4. Ir pra tela de Compra: mostrar o stepper de 3 etapas, preencher rapido, mostrar a mascara do
+   cartao formatando enquanto digita.
+5. Finalizar e cair na pagina de Obrigado com o recibo montado.
+6. Ir na pagina Sobre: mostrar o ranking calculando pontuacao (p(c) = 100c + bonus) e as
+   medalhas.
+7. Mostrar o cadastro na comunidade com o campo de senha e a barra de forca mudando de cor
+   (esse e o gancho de seguranca, reforca o que foi falado no Bloco 4).
+8. Mostrar rapido a barra de acessibilidade: alto contraste, aumento de fonte e leitor de voz
+   lendo algum texto.
+9. Se der tempo, mostrar em celular/responsivo (redimensionar navegador ou usar modo mobile do
+   DevTools) pra provar que funciona em telas menores.
+
+Se algo nao estiver 100% funcional, falar isso na hora sem enrolar: "essa parte X ainda esta em
+desenvolvimento, falta [o que falta]". E melhor do que fingir que esta pronto.
+
+---
+
+BLOCO 6 - CODIGOS-FONTE (~10s) [vale 0,25]
+
+Falar: "o codigo completo esta disponivel e versionado no GitHub, no link que deixamos na
+descricao." Confirmar ANTES de gravar que:
+- O repositorio esta no GitHub.
+- O link e publico (nao privado).
+- Commits fazem sentido (nao precisa ser perfeito, mas mostra evolucao real do projeto).
+
+---
+
+CHECKLIST FINAL ANTES DE GRAVAR
+
+[ ] Todo mundo decidiu junto se vai ou nao pro NEXT (resposta do Bloco 1)
+[ ] Ensaiou o fluxo da demonstracao pelo menos uma vez sem travar
+[ ] npm run dev rodando local e testado ANTES de gravar (ou versao publicada, tipo Vercel)
+[ ] Repositorio no GitHub esta publico
+[ ] Video vai ficar no YouTube como "nao listado"
+[ ] Cronometrar o video pra nao passar de 5 minutos
+[ ] Depois de gravar: criar o .txt de entrega com link do video + link do GitHub
