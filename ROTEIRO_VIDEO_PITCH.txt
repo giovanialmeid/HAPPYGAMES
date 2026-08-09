@@ -40,9 +40,9 @@ Falar rapido, pode ser com slide de apoio (lista simples):
 - Icones: lucide-react.
 - Persistencia local: localStorage (carrinho e preferencias de acessibilidade).
 - IDE: VS Code.
-- Apoio: Claude Code (Anthropic) pra revisar codigo e ajudar em partes especificas do
-  desenvolvimento; IA Generativa de imagem pra gerar as capas dos jogos.
+- IA Generativa de imagem pra gerar as capas dos jogos.
 - Controle de versao: Git e GitHub.
+- Auditoria de dependencias: npm audit.
 - (Se usou algo pra gerenciar tarefas do grupo tipo Trello/Notion, citar aqui tambem.)
 
 ---
