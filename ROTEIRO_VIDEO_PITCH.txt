@@ -60,6 +60,13 @@ O que ja tem implementado:
   durante o preenchimento.
 - Mascaras nos campos de cartao/validade/CVV pra evitar entrada invalida.
 - Validacao de formulario em todas as telas (nome, email, campos obrigatorios).
+- Auditoria de dependencias com npm audit: achamos 1 vulnerabilidade critica e 1 alta,
+  atualizamos o Next.js de 14.2.3 pra 14.2.35 e eliminamos a critica. A que sobrou fica dentro
+  do proprio Next e so seria corrigida subindo pra uma versao major que quebraria o projeto.
+  Avaliamos que o cenario de ataque dela nao se aplica aqui (e um problema de build com CSS
+  malicioso, e todo o CSS do projeto e escrito pela equipe), entao foi uma decisao consciente
+  de nao atualizar. Vale falar isso no video: mostra que a equipe sabe avaliar risco real em
+  vez de sair atualizando tudo no automatico.
 
 O que pretende adicionar:
 - Se o projeto ganhar backend/banco de dados real: hash de senha (bcrypt/argon2), nunca texto
@@ -78,11 +85,14 @@ Roteiro de telas pra mostrar em sequencia (praticar o fluxo antes de gravar, sem
 1. Home: mostrar os jogos carregando via API simulada (fetch), visual gaming com neon.
 2. Catalogo: usar a busca e os filtros de genero/plataforma ao vivo, mostrar que atualiza na
    hora.
-3. Adicionar 2 ou 3 jogos diferentes no carrinho, abrir o carrinho e mostrar o desconto
-   progressivo calculando sozinho (d(n) = 5n).
-4. Ir pra tela de Compra: mostrar o stepper de 3 etapas, preencher rapido, mostrar a mascara do
-   cartao formatando enquanto digita.
-5. Finalizar e cair na pagina de Obrigado com o recibo montado.
+3. Adicionar 2 ou 3 jogos diferentes no carrinho (o contador da navbar sobe junto), abrir o
+   carrinho e mostrar o desconto progressivo calculando sozinho (d(n) = 5n).
+4. Clicar em Finalizar Compra. Mostrar que a tela de compra traz os MESMOS jogos e o MESMO
+   total do carrinho. Boa hora pra aumentar a quantidade de um jogo ali na etapa 2 e mostrar
+   o desconto subindo ao vivo (com 4 itens bate no teto de 20%).
+5. Ir pra etapa de pagamento, mostrar a mascara do cartao formatando sozinha enquanto digita,
+   e o aviso verde de que os dados do cartao nao sao salvos nem enviados. Confirmar e cair na
+   pagina de Obrigado com o recibo montado.
 6. Ir na pagina Sobre: mostrar o ranking calculando pontuacao (p(c) = 100c + bonus) e as
    medalhas.
 7. Mostrar o cadastro na comunidade com o campo de senha e a barra de forca mudando de cor

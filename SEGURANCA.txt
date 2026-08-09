@@ -37,12 +37,34 @@ Todos os formularios (compra, cadastro de comunidade) tem validacao antes de ace
 campos obrigatorios, formato de email com regex, tamanho minimo de cartao/senha. Isso e uma
 primeira camada basica contra entrada de dado invalido ou mal-intencionado.
 
-5) Identidade visual marcante (recomendacao da mentoria)
+5) Auditoria das dependencias (npm audit)
+Rodamos npm audit no projeto e encontramos 2 vulnerabilidades: 1 critica e 1 alta, as duas
+vindas do Next.js 14.2.3. Atualizamos o Next para a versao 14.2.35, que e uma atualizacao de
+correcao dentro da mesma versao 14.2 (nao quebra o projeto). Isso eliminou a vulnerabilidade
+critica.
+
+Sobrou uma vulnerabilidade de nivel alto no PostCSS, mas ela vem de dentro do proprio Next.js
+(node_modules/next/node_modules/postcss). O npm avisa que a unica forma de corrigir seria subir
+para o Next.js 16, que e uma mudanca de versao major e provavelmente quebraria a aplicacao.
+
+Decidimos NAO fazer essa atualizacao, e o motivo e importante: a vulnerabilidade do PostCSS e um
+problema de leitura de arquivos .map durante o processo de build, explorada atraves de CSS
+malicioso. No nosso projeto, todo o CSS e escrito pela propria equipe, nenhum usuario envia CSS
+para a aplicacao. Ou seja, o cenario de ataque nao existe aqui. Trocar por uma versao major
+instavel dias antes da entrega traria mais risco do que a propria vulnerabilidade.
+
+Esse raciocinio (avaliar o risco real no contexto da aplicacao em vez de sair atualizando tudo
+no automatico) e exatamente o tipo de analise que o Pedro comentou na mentoria quando falou de
+priorizar o que vira trabalho de verdade para o profissional de seguranca.
+
+O PostCSS que o nosso projeto usa direto esta na versao 8.5.26, que ja e uma versao segura.
+
+6) Identidade visual marcante (recomendacao da mentoria)
 O tema "gaming" no Tailwind (cores, fontes Orbitron/Nunito, efeito neon e glassmorphism) foi
 citado pelo Pedro como algo que ajuda o projeto a ser lembrado. Ja estava na Fase 4, mantido
 aqui.
 
-6) LGPD e cuidado com IA (documentado na Fase 4)
+7) LGPD e cuidado com IA (documentado na Fase 4)
 Ja tinha ficado registrado no documento da Fase 4 que, se o projeto usar IA de verdade
 (recomendacao de jogos, chatbot etc.), os cuidados vao ser: nao mandar dado pessoal pra API
 externa sem necessidade, nao deixar a IA alucinar recomendando jogo que nao existe no catalogo,
@@ -64,6 +86,8 @@ O QUE AINDA FALTA / PROXIMOS PASSOS (pra falar no video que "ainda pretende faze
   verdade em vez do cadastro simples que so existe durante a sessao do navegador.
 - Sanitizacao mais forte de input (hoje a validacao e basica, do tipo "campo obrigatorio" e
   "formato de email"), importante se o projeto passar a salvar esses dados em um banco.
+- Acompanhar o Next.js: quando sair uma versao nova e estavel que resolva a pendencia do
+  PostCSS sem quebrar o projeto, fazer a atualizacao com calma e testar tudo de novo.
 
 ---
 
