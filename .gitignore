@@ -28,10 +28,3 @@ desktop.ini
 
 # Deploy
 .vercel
-
-# Transcricao da mentoria da Palo Alto.
-# Na propria gravacao eles falam que as mentorias ficam em segredo por causa do
-# campeonato, entao nao subi pro repositorio publico. O arquivo continua aqui na
-# pasta local pra consulta. Se o grupo decidir que pode publicar, e so apagar
-# esta linha.
-Transcrição Palo Alto Mentoria.txt
