@@ -28,3 +28,7 @@ desktop.ini
 
 # Deploy
 .vercel
+
+# Documentos locais de outras fases
+*.txt
+

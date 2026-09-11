@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import GameCard from '@/components/GameCard';
+import RecomendacaoIA from '@/components/RecomendacaoIA';
 import { Search, Sliders, X, RefreshCw, Grid } from 'lucide-react';
 
 // Pagina do catalogo - mostra todos os jogos com filtros
@@ -133,6 +134,8 @@ export default function Catalogo() {
           </button>
         </div>
       </div>
+
+      <RecomendacaoIA />
 
       {/* area dos resultados */}
       <div className="flex gap-8 items-start">
